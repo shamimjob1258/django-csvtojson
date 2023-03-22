@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!--{{insert_content}} -->
+<div class="container">
+<form method="post" action="edit_rec" >
+  {% csrf_token %}
+  <div class="form-group">
+    <label>Enter Text Name here</label>
+      <input class="form-control" name="note_name" value="{% if page_name %}{{page_name}}{% endif %}"/>
+  </div>
+  <div class="form-group">
+    <label>Enter text here</label>
+    <textarea class="form-control" name="note_text" rows="10" >{% if page_note %}{{page_note}}{% endif %}</textarea>
+    {% if note_text %}
+    <textarea class="form-control" name="note_edit">{{note_text}}</textarea>
+    {% endif %}
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock %}

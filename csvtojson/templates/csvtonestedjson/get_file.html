@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!--{{insert_content}} -->
+<div class="container">
+  <form method="post" enctype="multipart/form-data">
+         {% csrf_token %}
+         <br>
+         <h5>Upload CSV File</h5>
+         <table border=0 height=200 width=600>
+            {% for field in form %}
+            <tr>
+                <th>
+                    {{ field.label_tag }}
+                </th>
+                <div class="form-check form-check-inline">
+                    <th>{{ field }}</th>
+                </div>
+            </tr>
+            {% endfor %}
+        </table>
+        <input name="get_csv" class="btn btn-primary" type="submit" value="Generate JSON">
+
+
+        {% if request.POST %}
+        <br><br>
+        {% if error_flg == True %}
+        <div class="row" style="width: 600px">
+          <div class="col">
+              <div class="form-group">
+                  <label for="getdata1" style="color:red">Error Message</label>
+                  <textarea class="form-control" disabled id="getdata1" name="getdata1" rows="2" style="color: red">{% if error_msg %}{{error_msg}}{% endif %}</textarea>
+
+                </div>
+            </div>
+            </div>
+      {% else %}
+
+          <div class="row" style="width: 600px">
+              <div class="col">
+                  <div class="form-group">
+                  <label for="getdata1" style="color:green">Success Message</label>
+                  <textarea class="form-control" disabled id="getdata1" name="getdata1" rows="2" style="color: green">{% if error_msg %}{{error_msg}}{% endif %}</textarea>
+                </div>
+            </div>
+            </div>
+      {% endif %}
+      {% endif %}
+
+      </form>
+
+</div>
+
+
+{% endblock %}

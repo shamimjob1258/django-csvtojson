@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!--{{insert_content}} -->
+<div class="container">
+   {% csrf_token %}
+   <br>
+   <h5>JSON File</h5>
+      {{ json_output }}
+</div>
+{% endblock %}
